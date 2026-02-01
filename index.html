@@ -23,7 +23,7 @@
             box-shadow: 0 20px 50px rgba(255, 77, 109, 0.2);
             text-align: center;
             width: 500px;
-            min-height: 520px;
+            min-height: 550px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -43,7 +43,7 @@
         }
 
         button {
-            padding: 15px 40px;
+            padding: 15px 45px;
             font-size: 1.2rem;
             border-radius: 50px;
             border: none;
@@ -53,20 +53,11 @@
             transition: transform 0.2s;
         }
 
-        #yesBtn { 
-            background-color: #ff006e; 
-            box-shadow: 0 5px 15px rgba(255, 0, 110, 0.4);
-        }
-        
-        #noBtn { 
-            background-color: #00f5d4; 
-            box-shadow: 0 5px 15px rgba(0, 245, 212, 0.4);
-            position: relative;
-        }
+        #yesBtn { background-color: #ff006e; box-shadow: 0 5px 15px rgba(255, 0, 110, 0.4); }
+        #noBtn { background-color: #00f5d4; box-shadow: 0 5px 15px rgba(0, 245, 212, 0.4); position: relative; }
 
         .hidden { display: none !important; }
 
-        /* Celebration Layout Fix */
         #celebration {
             display: flex;
             flex-direction: column;
@@ -78,23 +69,35 @@
         .aesthetic-text {
             font-family: "Times New Roman", Times, serif;
             font-style: italic;
-            font-size: 2.5rem; /* Adjusted for longer text */
+            font-size: 2.2rem;
             color: #ff006e;
-            margin: 0;
+            margin-bottom: 10px;
             opacity: 0;
             animation: fadeIn 1s forwards;
         }
 
-        @keyframes fadeIn {
-            to { opacity: 1; transform: translateY(0); }
+        /* Polaroid Styling */
+        .polaroid {
+            background: white;
+            padding: 15px 15px 35px 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transform: rotate(-3deg);
+            margin: 20px 0;
+            opacity: 0;
+            animation: fadeIn 1s forwards 0.5s;
         }
 
         .cat-gif {
-            width: 250px;
+            width: 230px;
             height: auto;
-            border-radius: 20px;
-            margin: 20px auto; /* Centers the image */
             display: block;
+        }
+
+        .polaroid-caption {
+            font-family: 'Brush Script MT', cursive;
+            font-size: 1.6rem;
+            margin: 15px 0 0 0;
+            color: #555;
         }
 
         .thought {
@@ -104,42 +107,54 @@
             border-radius: 30px;
             border: 2px solid #333;
             font-family: "Times New Roman", Times, serif;
-            font-size: 1.4rem;
-            margin-top: 35px;
+            margin-top: 20px;
             opacity: 0;
-            animation: fadeIn 0.8s forwards 1s;
+            animation: fadeIn 1s forwards 1.2s;
+        }
+
+        .pass-code {
+            font-size: 2rem;
+            color: #ff006e;
+            display: block;
+            margin-top: 10px;
+            letter-spacing: 5px;
+            font-weight: bold;
         }
 
         .thought:before, .thought:after {
-            content: "";
-            background: #fff;
-            border: 2px solid #333;
-            position: absolute;
-            border-radius: 50%;
+            content: ""; background: #fff; border: 2px solid #333; position: absolute; border-radius: 50%;
         }
-
         .thought:before { width: 15px; height: 15px; top: -20px; left: 30px; }
         .thought:after { width: 8px; height: 8px; top: -30px; left: 20px; }
 
+        @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
+
         .confetti {
-            position: fixed;
-            width: 12px;
-            height: 12px;
-            top: -10px;
-            z-index: 1;
+            position: fixed; width: 12px; height: 12px; top: -10px; z-index: 1;
             animation: fall linear forwards;
         }
-
-        @keyframes fall {
-            to { transform: translateY(110vh) rotate(360deg); }
+        @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
+        
+        /* Hidden Music Player */
+        #musicPlayer {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border: none;
+            visibility: hidden;
         }
     </style>
 </head>
 <body>
 
+    <iframe id="musicPlayer" 
+            src="https://www.youtube.com/embed/aJOTlE1K90k?enablejsapi=1" 
+            allow="autoplay">
+    </iframe>
+
     <div class="card" id="mainCard">
         <div id="quizSection">
-            <h1>Rohit Poul, Will you be my Valentine?</h1>
+            <h1>Rohit Poul, will you be my Valentine?</h1>
             <div class="btn-container">
                 <button id="yesBtn">Yes</button>
                 <button id="noBtn">No</button>
@@ -147,12 +162,16 @@
         </div>
 
         <div id="celebration" class="hidden">
-            <p class="aesthetic-text">Yay! Thank you mi amor ❤️ </p>
+            <p class="aesthetic-text">Yay! Thank you mi amor ❤️</p>
             
-            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJueGZ4bmh6YjR4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/GeimqsH0TLDt4tScGw/giphy.gif" alt="Happy Jumping Cat" class="cat-gif">
+            <div class="polaroid">
+                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJueGZ4bmh6YjR4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/GeimqsH0TLDt4tScGw/giphy.gif" alt="Happy Jumping Cat" class="cat-gif">
+                <p class="polaroid-caption">❤️✨</p>
+            </div>
             
             <div class="thought">
-                A CRAZY surprise is coming your way on Feb 14th!
+                <p style="margin:0;">The key to your present 👀 👉👈:</p>
+                <span class="pass-code">05050722</span>
             </div>
         </div>
     </div>
@@ -162,6 +181,7 @@
         const noBtn = document.getElementById('noBtn');
         const quizSection = document.getElementById('quizSection');
         const celebration = document.getElementById('celebration');
+        const player = document.getElementById('musicPlayer');
 
         noBtn.addEventListener('mouseover', () => {
             const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
@@ -174,11 +194,15 @@
         yesBtn.addEventListener('click', () => {
             quizSection.classList.add('hidden');
             celebration.classList.remove('hidden');
+            
+            // This triggers the YouTube play command
+            player.src += "&autoplay=1";
+            
             startInfiniteConfetti();
         });
 
         function startInfiniteConfetti() {
-            const colors = ['#ff006e', '#00f5d4', '#fee440', '#9b5de5', '#00bbf9', '#ff9f1c'];
+            const colors = ['#ff006e', '#00f5d4', '#fee440', '#9b5de5', '#00bbf9'];
             setInterval(() => {
                 const confetti = document.createElement('div');
                 confetti.className = 'confetti';
